@@ -1,0 +1,33 @@
+<div class="storage-info">
+  <h3>Storage</h3>
+  
+  <div class="storage-usage">
+    <div class="progress-bar">
+      <div 
+        class="progress-fill" 
+        [style.width.%]="getStoragePercentage()" 
+        [style.background-color]="getProgressColor()">
+      </div>
+    </div>
+    
+    <div class="usage-text">
+      <div class="usage-amount">
+        {{ formatStorage(storageUsed) }} used
+      </div>
+      <div class="usage-limit">
+        of {{ formatStorage(storageLimit) }}
+      </div>
+    </div>
+  </div>
+  
+  <div class="storage-tips" *ngIf="getStoragePercentage() > 90">
+    <div class="tip-icon">⚠️</div>
+    <div class="tip-message">
+      Storage almost full. Consider deleting unused files or upgrading your plan.
+    </div>
+  </div>
+  
+  <div class="upgrade-button" *ngIf="getStoragePercentage() > 75">
+    <button class="btn-upgrade">Upgrade Storage</button>
+  </div>
+</div>

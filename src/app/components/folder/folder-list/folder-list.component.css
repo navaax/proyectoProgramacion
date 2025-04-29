@@ -1,0 +1,231 @@
+.folder-list {
+  width: 100%;
+}
+
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.folder-card {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.folder-card:hover {
+  border-color: #D1D5DB;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.folder-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.folder-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: #3B82F6;
+}
+
+.folder-info {
+  width: 100%;
+  text-align: center;
+}
+
+.folder-name {
+  font-weight: 500;
+  color: #1F2937;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-meta {
+  font-size: 0.85rem;
+  color: #6B7280;
+}
+
+.folder-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.folder-card:hover .folder-actions {
+  opacity: 1;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+}
+
+.action-button:hover {
+  background-color: #F3F4F6;
+}
+
+.delete-button:hover {
+  background-color: #FEE2E2;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 0;
+  color: #9CA3AF;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.error-message {
+  padding: 12px;
+  background-color: #FEE2E2;
+  color: #B91C1C;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.retry-button {
+  background-color: white;
+  border: 1px solid #B91C1C;
+  color: #B91C1C;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: #B91C1C;
+  color: white;
+}
+
+/* Loading state styles */
+.folder-grid-placeholder {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.folder-card-placeholder {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+}
+
+.folder-content-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.folder-icon-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.6) 25%,
+    rgba(229, 231, 235, 0.9) 50%,
+    rgba(229, 231, 235, 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.folder-info-placeholder {
+  width: 100%;
+  text-align: center;
+}
+
+.folder-name-placeholder {
+  height: 20px;
+  width: 80%;
+  margin: 0 auto 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.6) 25%,
+    rgba(229, 231, 235, 0.9) 50%,
+    rgba(229, 231, 235, 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.folder-meta-placeholder {
+  height: 16px;
+  width: 60%;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.6) 25%,
+    rgba(229, 231, 235, 0.9) 50%,
+    rgba(229, 231, 235, 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .folder-grid, .folder-grid-placeholder {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .folder-content {
+    padding: 16px 12px;
+  }
+  
+  .folder-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+  
+  .folder-actions {
+    opacity: 1;
+  }
+}

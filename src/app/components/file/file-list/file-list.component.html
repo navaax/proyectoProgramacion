@@ -1,0 +1,83 @@
+<div class="file-list">
+  <table class="file-table">
+    <thead>
+      <tr>
+        <th class="name-column">Name</th>
+        <th class="size-column">Size</th>
+        <th class="date-column">Modified</th>
+        <th *ngIf="showActions" class="actions-column">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of displayedFiles" class="file-row">
+        <td class="name-column">
+          <a [routerLink]="['/files', file.id]" class="file-name">
+            <span class="file-icon">{{ getFileIcon(file) }}</span>
+            <span>{{ file.name }}</span>
+          </a>
+        </td>
+        <td class="size-column">{{ formatFileSize(file.size) }}</td>
+        <td class="date-column">{{ file.updatedAt | date:'medium' }}</td>
+        <td *ngIf="showActions" class="actions-column">
+          <div class="file-actions">
+            <button (click)="openShareDialog(file)" class="action-button share-button" title="Share file">
+              <span>🔗</span>
+            </button>
+            <a [href]="file.url" download class="action-button download-button" title="Download file">
+              <span>⬇️</span>
+            </a>
+            <button (click)="deleteFile(file, $event)" class="action-button delete-button" title="Delete file">
+              <span>🗑️</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="empty-state" *ngIf="files.length === 0">
+    <div class="empty-icon">📄</div>
+    <p>No files found</p>
+  </div>
+  
+  <!-- Share Dialog -->
+  <div class="dialog-overlay" *ngIf="shareDialogOpen" (click)="closeShareDialog()">
+    <div class="dialog" (click)="$event.stopPropagation()">
+      <div class="dialog-header">
+        <h3>Share "{{ selectedFile?.name }}"</h3>
+        <button class="close-button" (click)="closeShareDialog()">✕</button>
+      </div>
+      
+      <div class="dialog-content">
+        <p>Create a shareable link to this file</p>
+        
+        <div class="share-options">
+          <!-- Share options can be added here (expiration, password, etc.) -->
+        </div>
+        
+        <div class="error-message" *ngIf="error">{{ error }}</div>
+        
+        <div *ngIf="!shareLink && !isLoading" class="generate-link-area">
+          <button class="btn-primary" (click)="shareFile()">Generate Share Link</button>
+        </div>
+        
+        <div *ngIf="isLoading" class="loading-indicator">
+          <div class="spinner"></div>
+          <span>Generating link...</span>
+        </div>
+        
+        <div *ngIf="shareLink" class="share-link-area">
+          <div class="share-link-container">
+            <input type="text" readonly [value]="shareLink" class="share-link-input" />
+            <button class="copy-button" (click)="copyShareLink()">Copy</button>
+          </div>
+          <p class="share-note">Anyone with this link can access this file</p>
+        </div>
+      </div>
+      
+      <div class="dialog-footer">
+        <button class="btn-secondary" (click)="closeShareDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

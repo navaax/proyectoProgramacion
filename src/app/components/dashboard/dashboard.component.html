@@ -1,0 +1,104 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="welcome-section">
+      <h1>Welcome to FileVault</h1>
+      <p>Securely manage your files in one place</p>
+    </div>
+    
+    <div class="action-buttons">
+      <button routerLink="/files/upload" class="btn-primary">
+        <span class="icon">+</span> Upload Files
+      </button>
+      <button routerLink="/folders/new" class="btn-secondary">
+        <span class="icon">📁</span> New Folder
+      </button>
+    </div>
+  </div>
+  
+  <div class="dashboard-content">
+    <div class="main-content">
+      <div class="section" *ngIf="isLoading">
+        <div class="loading-placeholder"></div>
+      </div>
+      
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+        <button (click)="loadDashboardData()" class="retry-button">Retry</button>
+      </div>
+      
+      <div class="section" *ngIf="!isLoading && !error">
+        <div class="section-header">
+          <h2>Recent Files</h2>
+          <a routerLink="/files" class="view-all">View All</a>
+        </div>
+        
+        <app-file-list 
+          [files]="recentFiles"
+          [showActions]="true"
+          [maxItems]="5">
+        </app-file-list>
+        
+        <div class="empty-state" *ngIf="recentFiles.length === 0">
+          <div class="empty-icon">📄</div>
+          <h3>No files yet</h3>
+          <p>Upload your first file to get started</p>
+          <button routerLink="/files/upload" class="btn-primary">Upload Files</button>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-header">
+          <h2>My Folders</h2>
+          <a routerLink="/folders" class="view-all">View All</a>
+        </div>
+        
+        <app-folder-list [maxItems]="5"></app-folder-list>
+      </div>
+      
+      <div class="section">
+        <div class="section-header">
+          <h2>Recent Activity</h2>
+        </div>
+        
+        <app-recent-activity></app-recent-activity>
+      </div>
+    </div>
+    
+    <aside class="sidebar">
+      <app-storage-info 
+        [storageUsed]="storageUsed"
+        [storageLimit]="storageLimit">
+      </app-storage-info>
+      
+      <div class="quick-access-section">
+        <h3>Quick Access</h3>
+        <ul class="quick-access-list">
+          <li>
+            <a routerLink="/files/images" class="quick-access-item">
+              <span class="icon">🖼️</span>
+              <span>Images</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/files/documents" class="quick-access-item">
+              <span class="icon">📝</span>
+              <span>Documents</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/shared/with-me" class="quick-access-item">
+              <span class="icon">🔗</span>
+              <span>Shared with me</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/shared/by-me" class="quick-access-item">
+              <span class="icon">📤</span>
+              <span>Shared by me</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>

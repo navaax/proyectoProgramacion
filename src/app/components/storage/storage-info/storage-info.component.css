@@ -1,0 +1,89 @@
+.storage-info {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1F2937;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.storage-usage {
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #E5E7EB;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #3B82F6;
+  border-radius: 4px;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.usage-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.usage-amount {
+  font-weight: 500;
+  color: #374151;
+}
+
+.usage-limit {
+  color: #6B7280;
+}
+
+.storage-tips {
+  background-color: #FEF3C7;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.tip-icon {
+  margin-right: 12px;
+  font-size: 1.1rem;
+}
+
+.tip-message {
+  font-size: 0.85rem;
+  color: #92400E;
+  flex: 1;
+}
+
+.upgrade-button {
+  margin-top: 16px;
+}
+
+.btn-upgrade {
+  width: 100%;
+  padding: 10px 16px;
+  background-color: white;
+  color: #3B82F6;
+  border: 1px solid #3B82F6;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-upgrade:hover {
+  background-color: #EFF6FF;
+}

@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/" class="logo">FileVault</a>
+    </div>
+    
+    <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="navbar-menu" [class.active]="isMenuOpen">
+      <ng-container *ngIf="authService.isAuthenticated(); else unauthenticatedMenu">
+        <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+        <a routerLink="/files" class="nav-link">My Files</a>
+        <a routerLink="/shared" class="nav-link">Shared with me</a>
+        <a routerLink="/profile" class="nav-link">Profile</a>
+        <button class="nav-button logout" (click)="logout()">Logout</button>
+      </ng-container>
+      
+      <ng-template #unauthenticatedMenu>
+        <a routerLink="/login" class="nav-link">Login</a>
+        <a routerLink="/register" class="nav-button primary">Sign Up</a>
+      </ng-template>
+    </div>
+  </div>
+</nav>

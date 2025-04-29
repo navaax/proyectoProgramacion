@@ -1,0 +1,29 @@
+<div class="activity-list">
+  <div *ngIf="isLoading" class="loading-activities">
+    <div class="activity-skeleton" *ngFor="let i of [1, 2, 3]">
+      <div class="skeleton-icon"></div>
+      <div class="skeleton-content">
+        <div class="skeleton-text"></div>
+        <div class="skeleton-time"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!isLoading && activities.length === 0" class="empty-activities">
+    <p>No recent activity</p>
+  </div>
+  
+  <div *ngIf="!isLoading && activities.length > 0" class="activity-items">
+    <div *ngFor="let activity of activities" class="activity-item">
+      <div class="activity-icon">{{ getActivityIcon(activity.type) }}</div>
+      <div class="activity-content">
+        <div class="activity-text">
+          {{ getActivityText(activity) }}
+        </div>
+        <div class="activity-time">
+          {{ getTimeAgo(activity.timestamp) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="folder-list">
+  <div class="folder-grid" *ngIf="!isLoading && folders.length > 0">
+    <div *ngFor="let folder of displayedFolders" class="folder-card">
+      <a [routerLink]="['/folders', folder.id]" class="folder-content">
+        <div class="folder-icon">📁</div>
+        <div class="folder-info">
+          <div class="folder-name">{{ folder.name }}</div>
+          <div class="folder-meta">
+            {{ folder.filesCount || 0 }} files
+          </div>
+        </div>
+      </a>
+      <div class="folder-actions">
+        <button (click)="deleteFolder(folder, $event)" class="action-button delete-button" title="Delete folder">
+          <span>🗑️</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="loading-state" *ngIf="isLoading">
+    <div class="folder-grid-placeholder">
+      <div class="folder-card-placeholder" *ngFor="let i of [1, 2, 3, 4]">
+        <div class="folder-content-placeholder">
+          <div class="folder-icon-placeholder"></div>
+          <div class="folder-info-placeholder">
+            <div class="folder-name-placeholder"></div>
+            <div class="folder-meta-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="error-message" *ngIf="error">
+    {{ error }}
+    <button (click)="loadFolders()" class="retry-button">Retry</button>
+  </div>
+  
+  <div class="empty-state" *ngIf="!isLoading && folders.length === 0 && !error">
+    <div class="empty-icon">📁</div>
+    <p>No folders yet</p>
+  </div>
+</div>
